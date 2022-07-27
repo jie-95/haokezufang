@@ -65,7 +65,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 p{
   font-size: 14px;
   color:#999999;

@@ -27,19 +27,19 @@
     <!-- 中间导航 -->
     
     <van-grid style="padding: '10px 0'" class="centerImg">
-      <van-grid-item  text="整租" >
+      <van-grid-item  text="整租" @click="btn1(1)">
         <img src="../../assets/imgs/1.png" alt="">
         <h2>整租</h2>
       </van-grid-item>
-      <van-grid-item  text="合租" >
+      <van-grid-item  text="合租" @click="btn1(1)">
         <img src="../../assets/imgs/2.png" alt="">
         <h2>合租</h2>
       </van-grid-item>
-      <van-grid-item  text="地图找房" >
+      <van-grid-item  text="地图找房" @click="btn1(3)">
         <img src="../../assets/imgs/3.png" alt="">
         <h2>地图找房</h2>
       </van-grid-item>
-      <van-grid-item  text="去出租" >
+      <van-grid-item  text="去出租" @click="btn2()">
         <img src="../../assets/imgs/4.png" alt="">
         <h2>去出租</h2>
       </van-grid-item>
@@ -66,6 +66,8 @@
 <script>
 import "@/assets/font/iconfont.css/";
 import { swiperApi,groupsApi } from "@/api";
+
+
 export default {
   name:"Home",
   data() {
@@ -84,7 +86,7 @@ export default {
       })
     },
     areaSearch(){
-      console.log("area");
+      // console.log("area");
       this.$router.push({
         path:"/area"
         })
@@ -104,12 +106,25 @@ export default {
     async getGroupsList() {
       try{
         const res = await groupsApi()
-        console.log(res.data.body);
+        // console.log(res.data.body);
         this.groupsList = res.data.body
       }catch (e) {
         console.log(e);
       }
-    }
+    },
+    btn1(val){
+      this.$router.push({
+        path:"/layout/find"
+      }),
+      this.$bus.$emit('active',val 
+      )
+      
+    },
+  btn2(){
+    this.$router.push({
+      path:"/login"
+    })
+  }
   },
   mounted() {
     this.getSwiperList();

@@ -8,6 +8,7 @@ import News from '@/views/News'
 import My from '@/views/My'
 import Map from '@/views/Map'
 import Area from '@/views/Area'
+import Login from '@/views/Login'
 
 
 Vue.use(VueRouter)
@@ -19,46 +20,49 @@ const routes = [
   },
   {
     path: '/layout',
-    name:"layout",
+    name: 'layout',
     component: Layout,
     redirect: '/layout/home',
     children: [
       {
         path: 'home',
-        name:"home",
-        component: Home,
-       
+        name: 'home',
+        component: Home
       },
       {
         path: 'find',
-        name:"find",
+        name: 'find',
         component: Find
       },
       {
         path: 'news',
-        name:"news",
+        name: 'news',
         component: News
       },
       {
         path: 'my',
-        name:"my",
+        name: 'my',
         component: My
       }
     ]
   },
   {
-    path:"/map",
-    name:"map",
+    path: '/map',
+    name: 'map',
     component: Map
   },
   {
-    path:"/area",
-    name:"area",
+    path: '/area',
+    name: 'area',
     component: Area
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   }
 ]
 const router = new VueRouter({
   routes
 })
 export default router
-

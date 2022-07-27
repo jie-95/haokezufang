@@ -25,3 +25,9 @@ export const areaCity = (level) => {
         }
     })
 }
+export const areaMap = (params) => {
+    return request({
+        url:"/area/map",
+        params
+    })
+}

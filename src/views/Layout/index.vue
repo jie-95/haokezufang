@@ -3,7 +3,7 @@
     <div>
       <router-view></router-view>
     </div>
-    <van-tabbar v-model="active">
+    <van-tabbar v-model="active" @btn1="btnActive(val)">
       <van-tabbar-item to="/layout/home" icon="home-o">首页</van-tabbar-item>
       <van-tabbar-item to="/layout/find" icon="search">找房</van-tabbar-item>
       <van-tabbar-item to="/layout/news" icon="notes-o">资讯</van-tabbar-item>
@@ -20,8 +20,19 @@ export default {
       active: 0,
     };
   },
+  // methods:{
+  //   btnActive(val){
+  //     console.log(val)
+  //   }
+  // }
+  mounted(){
+    this.$bus.$on("active",val=>{
+     this.active= val
+    })
+  }
 };
 </script>
 
 <style>
+/* #21b97a */
 </style>
