@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import {LoginApi} from "@/api/index"
+import { Toast } from 'vant';
 export default {
   data() {
     return {
@@ -45,8 +47,19 @@ export default {
     };
   },
   methods: {
-    onSubmit(values) {
-      console.log("submit", values);
+   async onSubmit() {
+      try {
+        const res = await LoginApi(this.username, this.password)
+      console.log(res.data.body.token);
+      window.localStorage.setItem('TOKEN',JSON.stringify(res.data.body.token))
+      this.$toast.success("登录成功")
+      this.$router.push({
+        path:"/layout/home"
+      })
+      }catch (e) {
+        this.$toast.fail("登录失败")
+        console.log(e);
+      }
     },
     onClickLeft() {
     this.$router.push({

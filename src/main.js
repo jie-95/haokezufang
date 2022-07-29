@@ -16,8 +16,8 @@ Vue.use(Vant);
 
 Vue.config.productionTip = false
 
-const vm= new Vue({
+new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
-console.log(vm);
+

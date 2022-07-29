@@ -66,8 +66,6 @@
 <script>
 import "@/assets/font/iconfont.css/";
 import { swiperApi,groupsApi } from "@/api";
-
-
 export default {
   name:"Home",
   data() {

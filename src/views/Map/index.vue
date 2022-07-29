@@ -20,12 +20,12 @@ export default {
   // mounted(){
   //   this.getareaMapList()
   // },
-  // methods: {
-  //   onClickLeft() {
-  //     this.$router.push({
-  //       path: "/layout/home",
-  //     });
-  //   },
+  methods: {
+    onClickLeft() {
+      this.$router.push({
+        path: "/layout/home",
+      });
+    },
   //   async getareaMapList() {
   //     try {
   //       const res = await areaMapApi({});
@@ -34,8 +34,8 @@ export default {
   //       console.log(e);
   //     }
   //   },
-  // },
-};
+  },
+}
 </script>
 
 <style>
