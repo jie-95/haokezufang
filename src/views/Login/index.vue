@@ -6,7 +6,7 @@
         left-arrow
         @click-left="onClickLeft"
       >
-        <template slot="title" class="city"> 账号登陆 </template>
+        <template slot="title"> 账号登陆 </template>
       </van-nav-bar>
     </div>
 
@@ -25,7 +25,11 @@
         :rules="[{ required: true, message: '请填写密码' }]"
       />
       <div style="margin: 16px">
-        <van-button style="background-color:#1cb676" block type="info" native-type="submit"
+        <van-button
+          style="background-color: #1cb676"
+          block
+          type="info"
+          native-type="submit"
           >登录</van-button
         >
       </div>
@@ -37,54 +41,52 @@
 </template>
 
 <script>
-import {LoginApi} from "@/api/index"
-import { Toast } from 'vant';
+import { LoginApi } from '@/api/index'
 export default {
-  data() {
+  data () {
     return {
-      username: "",
-      password: "",
-    };
+      username: '',
+      password: ''
+    }
   },
   methods: {
-   async onSubmit() {
+    async onSubmit () {
       try {
         const res = await LoginApi(this.username, this.password)
-      console.log(res.data.body.token);
-      window.localStorage.setItem('TOKEN',JSON.stringify(res.data.body.token))
-      this.$toast.success("登录成功")
-      this.$router.push({
-        path:"/layout/home"
-      })
-      }catch (e) {
-        this.$toast.fail("登录失败")
-        console.log(e);
+        console.log(res.data.body.token)
+        window.localStorage.setItem(
+          'TOKEN',
+          JSON.stringify(res.data.body.token)
+        )
+        this.$toast.success('登录成功')
+        this.$router.push({
+          path: '/layout/home'
+        })
+      } catch (e) {
+        this.$toast.fail('登录失败')
+        console.log(e)
       }
     },
-    onClickLeft() {
-    this.$router.push({
-      name: "layout",
-    });
-  },
-  },
-  
-};
+    onClickLeft () {
+      this.$router.back()
+    }
+  }
+}
 </script>
 
 <style scoped>
-    .van-field{
-        height: 60px;
-        line-height: 60px;
-        padding:2px 0;
-        margin: 0 20px;
-    }
-    .newUser {
-        height: 20px;
-        text-align: center;
-
-    }
-    .newUser a {
-        display: inline-block;
-        color: #666;
-    }
+.van-field {
+  height: 60px;
+  line-height: 60px;
+  padding: 2px 0;
+  margin: 0 20px;
+}
+.newUser {
+  height: 20px;
+  text-align: center;
+}
+.newUser a {
+  display: inline-block;
+  color: #666;
+}
 </style>
