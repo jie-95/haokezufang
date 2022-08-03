@@ -117,14 +117,14 @@ export default {
       this.$router.push({
         path: '/login'
       })
-    },
+    }
     //   city(val){
     //     this.$bus.$on('cityPlace',val){}
     // },
-    mounted() {
-      this.getSwiperList()
-      this.getGroupsList()
-    }
+  },
+  mounted() {
+    this.getSwiperList()
+    this.getGroupsList()
   }
 }
 </script>

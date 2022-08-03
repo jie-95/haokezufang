@@ -32,12 +32,12 @@
     <!-- 已登录 -->
 
     <van-grid :column-num="3" :border="false" style="margin-top: 5px">
-      <van-grid-item icon="star-o" text="我的收藏" />
-      <van-grid-item icon="wap-home-o" text="我的出租" />
-      <van-grid-item icon="underway-o" text="看房记录" />
-      <van-grid-item icon="idcard" text="成为房主" />
-      <van-grid-item icon="user-o" text="个人资料" />
-      <van-grid-item icon="phone-o" text="联系我们" />
+      <van-grid-item @click="collect" icon="star-o" text="我的收藏" />
+      <van-grid-item @click="1" icon="wap-home-o" text="我的出租" />
+      <van-grid-item @click="1" icon="underway-o" text="看房记录" />
+      <van-grid-item @click="1" icon="idcard" text="成为房主" />
+      <van-grid-item @click="1" icon="user-o" text="个人资料" />
+      <van-grid-item @click="1" icon="phone-o" text="联系我们" />
     </van-grid>
     <div class="footer"></div>
   </div>
@@ -52,7 +52,6 @@ export default {
       userInfoList: []
     }
   },
-
   computed: {
     isLogin() {
       return !!this.$store.state.tokenObj.token
@@ -86,6 +85,10 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    // 中间宫格转跳按钮
+    collect() {
+      this.$router.push('/collect')
     }
   },
   mounted() {
