@@ -41,11 +41,29 @@ export const Login = (username, password) => {
     }
   })
 }
+// 根据城市名称查询该城市信息
+export const areaInfo = (name, value) => {
+  return request({
+    url: '/area/info',
+    params: {
+      name,
+      value
+    }
+  })
+}
+
 export const getHouseList = (cityId) => {
   return request({
-    url:"/houses",
-    params:{
+    url: '/houses',
+    params: {
       cityId
     }
+  })
+}
+
+export const getUserInfo = (Authorization) => {
+  return request({
+    url: '/user/',
+    headers: { Authorization }
   })
 }

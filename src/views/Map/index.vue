@@ -5,38 +5,35 @@
       left-arrow
       @click-left="onClickLeft"
     >
-      <template slot="title" class="city"> 地图找房 </template>
+      <span slot="title" class="city"> 地图找房 </span>
     </van-nav-bar>
     <h1>暂无数据</h1>
   </div>
 </template>
 
 <script>
-import { areaMapApi } from "@/api";
+// import { areaMapApi } from '@/api'
 export default {
   data() {
-    return {};
+    return {}
   },
   // mounted(){
   //   this.getareaMapList()
   // },
   methods: {
     onClickLeft() {
-      this.$router.push({
-        path: "/layout/home",
-      });
-    },
-  //   async getareaMapList() {
-  //     try {
-  //       const res = await areaMapApi({});
-  //       console.log(res);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   },
-  },
+      this.$router.back()
+    }
+    //   async getareaMapList() {
+    //     try {
+    //       const res = await areaMapApi({});
+    //       console.log(res);
+    //     } catch (e) {
+    //       console.log(e);
+    //     }
+    //   },
+  }
 }
 </script>
 
-<style>
-</style>
+<style></style>

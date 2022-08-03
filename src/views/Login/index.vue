@@ -19,7 +19,7 @@
       />
       <van-field
         v-model="password"
-        type="password"
+        type="text"
         name="密码"
         placeholder="请输入密码"
         :rules="[{ required: true, message: '请填写密码' }]"
@@ -43,31 +43,28 @@
 <script>
 import { LoginApi } from '@/api/index'
 export default {
-  data () {
+  data() {
     return {
       username: '',
       password: ''
     }
   },
   methods: {
-    async onSubmit () {
+    async onSubmit() {
       try {
-        const res = await LoginApi(this.username, this.password)
-        console.log(res.data.body.token)
-        window.localStorage.setItem(
-          'TOKEN',
-          JSON.stringify(res.data.body.token)
-        )
-        this.$toast.success('登录成功')
-        this.$router.push({
-          path: '/layout/home'
-        })
+        const {
+          data: { body: token }
+        } = await LoginApi(this.username, this.password)
+        // console.log(token)
+        this.$store.commit('SET_TOKEN', token)
+        this.$router.push('./layout/my')
+        this.$toast.success('登陆成功')
       } catch (e) {
         this.$toast.fail('登录失败')
         console.log(e)
       }
     },
-    onClickLeft () {
+    onClickLeft() {
       this.$router.back()
     }
   }

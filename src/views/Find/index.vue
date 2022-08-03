@@ -4,13 +4,12 @@
     <div>
       <van-search
         class="search"
-        v-model="value"
         show-action
         disabled
         placeholder="请输入小区或地址"
         @search="onSearch"
       >
-        <template slot="label" class="area">
+        <template slot="label">
           <span @click="areaSearch">北京</span
           ><i class="iconfont icon-arrow" style="font-size: 12px"></i>
         </template>
@@ -22,74 +21,114 @@
     <!-- //顶部 -->
     <!-- 列表展示 -->
     <div style="height: 55px; width: 100%"></div>
+    <!-- 中间区域选择 -->
+    <van-dropdown-menu>
+      <van-dropdown-item title="区域">
+        <van-picker
+          show-toolbar
+          @confirm="confirm"
+          @cancel="cancel"
+          @change="onChange"
+          toolbar-position="bottom"
+          :columns="columns"
+        />
+      </van-dropdown-item>
+    </van-dropdown-menu>
+    <!-- 中间区域选择 -->
     <div class="list" v-for="item in list" :key="item.houseCode">
       <div class="list-img">
         <img :src="`http://liufusong.top:8080${item.houseImg}`" alt="" />
       </div>
       <div class="list-info">
-        <h3>{{item.title}}</h3>
-        <div class="about">{{item.desc}}</div>
-        <div class="tips">{{item.tags}}</div>
+        <h3>{{ item.title }}</h3>
+        <div class="about">{{ item.desc }}</div>
+        <div class="tips">{{ item.tags }}</div>
         <div>
-          <span class="price">{{item.price}}</span>
+          <span class="price">{{ item.price }}</span>
           <span class="yue">元/月</span>
         </div>
       </div>
     </div>
+
     <!-- 列表展示 -->
   </div>
 </template>
 
 <script>
-import { getHouseListApi } from "@/api";
+import { getHouseListApi } from '@/api'
 export default {
   data() {
     return {
-      value: "",
       list: [],
-      loading: false,
-      finished: false,
-    };
+      pickList: [],
+      columns: [
+        // 第一列
+        {
+          values: ['区域', '地铁'],
+          defaultIndex: 2
+        },
+        // 第二列
+        {
+          values: ['上午', '下午', '晚上'],
+          defaultIndex: 1
+        },
+        // 第三列
+        {
+          values: []
+        }
+      ]
+    }
   },
-  mounted(){
+  mounted() {
     this.onLoad()
   },
   methods: {
     onSearch() {
-      console.log("map");
+      // console.log('map')
       this.$router.push({
-        path: "/map",
-      });
+        path: '/map'
+      })
     },
     areaSearch() {
       // console.log("area");
       this.$router.push({
-        path: "/area",
-      });
+        path: '/area'
+      })
     },
     async onLoad() {
       try {
-        const res = await getHouseListApi();
-        console.log(res.data.body.list);
-        this.list = res.data.body.list;
+        const res = await getHouseListApi()
+        console.log(res.data.body.list)
+        this.list = res.data.body.list
       } catch (e) {
-        console.log(e);
+        console.log(e)
       }
     },
-  },
-};
+    // 下拉列表
+    // 确认按钮
+    confirm() {
+      console.log('确认')
+    },
+    // 取消按钮
+    cancel() {
+      console.log('取消')
+    },
+    onChange(value, index) {
+      console.log(value, index)
+      // const = this.list.filter((ele) => ele.)
+    }
+  }
+}
 </script>
 
-<style>
+<style scoped lang="less">
 .search {
   position: absolute;
   z-index: 1;
   width: 100%;
   background: #21b97a !important;
 }
-.area {
-  border-right: 1px solid #ccc;
-}
+
 .iconfont {
   color: #fff;
   vertical-align: middle;
@@ -136,5 +175,19 @@ export default {
 .list-info .yue {
   font-size: 12px;
   color: #fa5714;
+}
+/* 下拉菜单样式 */
+:deep(.van-picker__cancel) {
+  width: 125px;
+  height: 51px;
+  font-size: 18px;
+  color: #21b97a;
+}
+:deep(.van-picker__confirm) {
+  width: 250px;
+  height: 51px;
+  background-color: #21b97a;
+  color: #fff;
+  font-size: 18px;
 }
 </style>
